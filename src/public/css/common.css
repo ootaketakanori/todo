@@ -1,16 +1,16 @@
-/* {
-    border: 1px solid red;
-}*/
 .header {
-    background-color:black;
+    background: #000;
 }
+
 .header__inner {
     margin: 0 auto;
-    padding: 20px 20px;
+    padding: 20px 15px;
     max-width: 1230px;
 }
-.header__logo {
-    color:aliceblue;
-    font-weight:bold;
 
+.header__logo {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
 }
