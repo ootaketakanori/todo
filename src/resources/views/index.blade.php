@@ -17,13 +17,13 @@
         @section('content')
         <div class="todo__alert">
             @if(session('message'))
-            <div class="todo__alert--success"> {{session('message')}}
+            <div class="todo__alert--success"> {{ session('message') }}
             </div>
             @endif
             @if ($errors->any())
             <div class="todo__alert--danger">
                 <ul>
-                    @foreach ($errors-all() as $error)
+                    @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                     @endforeach
                 </ul>
@@ -49,10 +49,13 @@
                     @foreach ($todos as $todo)
                     <tr class="todo-table__row">
                         <td class="todo-table__item">
-                            <form class="update-form">
+                            <form class="update-form" action="/todos/update" method="POST">
+                                @method('PATCH')
+                                @csrf
                                 <div class="update-form__item">
-                                    <p class="update-form__item-input">{{ $todo['content'] }}</p>
                                     <input class="update-form__item-input" type="text" name="content" value="test">
+                                    <input class="update-form__item-input" type="text" name="content" value="{{ $todo['content'] }}"></input>
+                                    <input type="hidden" name="id" value="{{ $todo['id'] }}">
                                 </div>
                                 <div class="update-form__button">
                                     <button class="update-form__button-submit" type="submit">更新</button>
@@ -73,5 +76,6 @@
         </div>
         @endsection
     </main>
+</body>
 
 </html>
