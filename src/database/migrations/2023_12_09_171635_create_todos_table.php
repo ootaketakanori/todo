@@ -17,6 +17,8 @@ class CreateTodosTable extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained()->cascadeOnDelete()->nullable();
             $table->string('content', 20)->nullable();
+            $table->integer('code')->default(1);
+            $table->string('name', '100')->default('');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });
