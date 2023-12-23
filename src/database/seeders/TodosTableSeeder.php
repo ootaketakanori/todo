@@ -15,14 +15,14 @@ class TodosTableSeeder extends Seeder
      */
     public function run()
     {
-        $category1 = Category::create(['name' => 'カテゴリ']);
-        $category2 = Category::create(['name' => 'category1']);
-        $category3 = Category::create(['name' => 'category2']);
+        $category = Category::create(['name' => 'カテゴリ']);
+        $category2 = Category::create(['name' => 'category2']);
+        $category3 = Category::create(['name' => 'category3']);
 
         $todos = [
-            ['category_id' => $category1->id,  'content' => 'Todo', 'code' => 1, 'name' => 'カテゴリ'],
-            ['category_id' => $category2->id, 'content' => 'Todo1', 'code' => 2, 'name' => 'category1'],
-            ['category_id' => $category3->id, 'content' => 'Todo2', 'code' => 3, 'name' => 'category2'],
+            ['category_id' => $category->id, 'content' => 'Todo', 'name' => 'カテゴリ'],
+            ['category_id' => $category2->id, 'content' => 'Todo', 'name' => 'category2'],
+            ['category_id' => $category3->id, 'content' => 'Todo', 'name' => 'category3'],
         ];
         DB::table('todos')->insert($todos);
     }
