@@ -48,7 +48,7 @@
             <input class="search-form__item-input" type="text" name="keyword" value="{{ old('keyword') }}">
             <select class="search-form__item-select" name="category_id">
                 <option value="">カテゴリ</option>
-                @forreach ($categories as $category)
+                @foreach ($categories as $category)
                 <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
                 @endforeach
             </select>

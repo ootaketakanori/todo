@@ -17,7 +17,7 @@ class Todo extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    
+
     public function scopeCategorySearch($query, $category_id)
     {
         if (!empty($category_id)) {
@@ -30,5 +30,4 @@ class Todo extends Model
             $query->where('content', 'like', '%' . $keyword . '%');
         }
     }
-    
-
+}
