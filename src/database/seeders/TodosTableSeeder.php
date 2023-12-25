@@ -20,9 +20,9 @@ class TodosTableSeeder extends Seeder
         $category3 = Category::create(['name' => 'category3']);
 
         $todos = [
-            ['category_id' => $category->id, 'content' => 'Todo', 'name' => 'カテゴリ'],
-            ['category_id' => $category2->id, 'content' => 'Todo', 'name' => 'category2'],
-            ['category_id' => $category3->id, 'content' => 'Todo', 'name' => 'category3'],
+            ['category_id' => $category->id, 'content' => 'Todo'],
+            ['category_id' => $category2->id, 'content' => 'Todo'],
+            ['category_id' => $category3->id, 'content' => 'Todo'],
         ];
         DB::table('todos')->insert($todos);
     }

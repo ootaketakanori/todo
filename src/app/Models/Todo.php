@@ -13,6 +13,7 @@ class Todo extends Model
         'category_id',
         'content'
     ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -24,6 +25,7 @@ class Todo extends Model
             $query->where('category_id', $category_id);
         }
     }
+
     public function scopeKeywordSearch($query, $keyword)
     {
         if (!empty($keyword)) {

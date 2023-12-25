@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TodoRequest;
+use App\Models\Category;
 use App\Models\Todo;
 use Illuminate\Http\Request;
-use App\Models\Category;
-
 
 class TodoController extends Controller
 {
@@ -18,14 +17,22 @@ class TodoController extends Controller
         return view('index', compact('todos', 'categories'));
     }
 
+    public function search(Request $request)
+    {
+        $todos = Todo::with('category')->CategorySearch($request->category_id)->KeywordSearch($request->keyword)->get();
+        $categories = Category::all();
+
+        return view('index', compact('todos', 'categories'));
+    }
+
     public function store(TodoRequest $request)
     {
-
-        $todo = $request->only(['category_id', 'name']);
+        $todo = $request->only(['category_id', 'content']);
         Todo::create($todo);
 
         return redirect('/')->with('message', 'Todoを作成しました');
     }
+
     public function update(TodoRequest $request)
     {
         $todo = $request->only(['content']);
@@ -33,17 +40,11 @@ class TodoController extends Controller
 
         return redirect('/')->with('message', 'Todoを更新しました');
     }
+
     public function destroy(Request $request)
     {
-        Todo::find($request->id)->delete();
+        Todo::find($request->todo_id)->delete();
 
         return redirect('/')->with('message', 'Todoを削除しました');
-    }
-    public function searach(Request $request)
-    {
-        $todos = Todo::with('category')->CategorySearach($request->category_id)->keywordSeaach($request->keyword)->get();
-        $categories = Category::all();
-
-        return view('index', compact('todos', 'categories'));
     }
 }

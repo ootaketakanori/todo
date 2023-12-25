@@ -1,37 +1,29 @@
-<!DOCTYPE html>
-<html lang="ja">
+<?php
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo</title>
-    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
-    @yield('css')
-</head>
+namespace Database\Seeders;
 
-<body>
-    <header class="header">
-        <div class="header__inner">
-            <div class="header-utilities">
-                <a class="header__logo" href="/">
-                    Todo
-                </a>
-            </div>
-            <nav>
-                <ul class="header-nav">
-                    <li class="header-nav__item">
-                        <a class="header-nav__link" href="/categories">カテゴリー一覧</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use App\Models\Category;
 
-    <main>
-        @yield('content')
-    </main>
-</body>
+class TodosTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $category = Category::create(['name' => 'カテゴリ']);
+        $category2 = Category::create(['name' => 'category2']);
+        $category3 = Category::create(['name' => 'category3']);
 
-</html>
+        $todos = [
+            ['category_id' => $category->id, 'content' => 'Todo'],
+            ['category_id' => $category2->id, 'content' => 'Todo'],
+            ['category_id' => $category3->id, 'content' => 'Todo'],
+        ];
+        DB::table('todos')->insert($todos);
+    }
+}
